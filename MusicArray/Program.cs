@@ -1,8 +1,16 @@
-﻿using System;
+using System;
 namespace musicArray
 {
     class Program
     {
+        enum Genre
+        {
+            Classic,
+            Alternative,
+            Metal,
+            Jazz,
+            Pop
+        }
 
         struct Music
         {
@@ -10,7 +18,7 @@ namespace musicArray
             private string Artist;
             private string Album;
             private decimal Length;
-            private string Genre;
+            private Genre? Genre;
 
 
             public void setTitle(string title)
@@ -31,7 +39,7 @@ namespace musicArray
             {
                 Length = length;
             }
-            public void setGenre(string genre)
+            public void setGenre(Genre? genre)
             {
                 Genre = genre;
             }
@@ -60,11 +68,54 @@ namespace musicArray
                     collection[i].setAlbum(Console.ReadLine());
                     Console.WriteLine("What is the length of the track?");
                     collection[i].setLength (decimal.Parse(Console.ReadLine()));
-                    Console.WriteLine("What is the genre?");
-                    collection[i].setGenre(Console.ReadLine());
-                    
+                    Console.WriteLine("What is the music genre?");
+
+                    Console.WriteLine("C - classic\nM - metal\nA - alternative\nJ - jazz\nP - pop");
+
+                    Genre tempGenre = Genre.Classic;
+
+                    char g = char.Parse(Console.ReadLine());
+
+                    switch (g)
+
+                    {
+
+                        case 'C':
+
+                            tempGenre = Genre.Classic;
+
+                            break;
+
+                        case 'M':
+
+                            tempGenre = Genre.Metal;
+
+                            break;
+
+                        case 'A':
+
+                            tempGenre = Genre.Alternative;
+
+                            break;
+
+                        case 'J':
+
+                            tempGenre = Genre.Jazz;
+
+                            break;
+
+                        case 'P':
+
+                            tempGenre = Genre.Pop;
+
+                            break;
 
                     }
+
+                    collection[i].setGenre(tempGenre);
+
+
+                }
                 }
 
             catch (ArgumentException e)
